@@ -8,20 +8,33 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">               
         <style>
+            :root {
+                --front-color: #fff;
+                --background-color:#333;                
+            }
             body {
                 font-family: 'Roboto', sans-serif;            
-                color: #444;
-                font-size: 1.2rem;
+                color: var(--front-color);
+                background-color: var(--background-color);
+                font-weight: 300;
             }
             
             h1,h2,h3,h4,h5 {
-                font-weight: 700;
+                font-weight: 500;
                 display: block;
                 margin: 0;                            
             }
-            .heading {
-                font-size: 3.5rem;
+            
+            .title {
+                font-size: 3.2rem;
+                letter-spacing: -.1rem;
             }
+            
+            .subtitle {
+                font-size: 1.2rem;
+                margin-bottom: 2rem;
+            }
+
             p {
                 margin: 0;                
             }
@@ -33,16 +46,84 @@
                 top: 0;
                 bottom: 0;
                 margin: auto;
-                text-align: center;
-            }                        
-
+                text-align: center;                
+            } 
+            
+            #random-text-div {
+                position: absolute;
+                overflow: hidden;
+                left: 0;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                font-size: .8rem;
+                opacity: .75;
+            }
+            
+            .random-text {
+                position: absolute;
+                display: inline-block;
+                background-color: var(--background-color);
+                padding: 1px;                
+            }
         </style>
     </head>
 
     <body>
-        <div class="center" style="width: 400px; height: 200px;">
-            <h1 class="heading">World Page</h1>
-            <p>You have always been there.</p>
+
+        <div id="random-text-div"></div>
+
+        <div class="center" style="width: 250px; height:400px; padding: 2rem; background-color:var(--background-color);">
+            <div >
+                <h1 class="title">World Page</h1>
+                <p class="subtitle">You have always been there</p>
+            </div>
         </div>
+        
+        <script>
+            const texts = [
+                'World Page', // English
+                '世界页', // Chinese (Simplified)
+                '世界頁', // Chinese (Traditional)
+                'विश्व पृष्ठ', // Hindi: vishv prshth 
+                'pagina mundial', // Spanish
+                'صفحة العالم', // Arabic
+                'Page du monde', // French
+                'Página mundial', // Portuguese
+                'Мировая страница', // Russian
+                'عالمی صفحہ', // Urdu
+                'Weltseite', // German
+                'ワールドページ', // Japanese
+                'जागतिक पृष्ठ', // Marathi
+                'Trang thế giới', // Vietnamese
+                'ప్రపంచ పేజీ', // Telugu
+                'Shafin Duniya', // Hausa
+                'Dünya Sayfası', // Turkish
+                'ਵਿਸ਼ਵ ਪੰਨਾ', // Punjabi
+                'Ukurasa wa Dunia', // Swahili
+                'உலக பக்கம்', // Tamil
+                'صفحه جهانی', // Persian
+                '월드 페이지', // Korean
+                'หน้าโลก', // Thai
+                'Pagina del mondo', // 
+                'વિશ્વ પૃષ્ઠ', // Gujarati
+                'የዓለም ገጽ', // Amharic
+                'ವಿಶ್ವ ಪುಟ', // Kannada
+                'वर्ल्ड पेज के बा', // Bhojpuri
+            ]
+            const n = texts.length
+            const w = window.innerWidth 
+            const h = window.innerHeight 
+            const m = Math.floor( Math.max(w,h) / 70 )
+            var x, y, text           
+            for (j=0; j<m; j++) {
+                for (i=0; i<n; i++) {
+                    text = texts[i]                 
+                    x = w * Math.random()
+                    y = h * Math.random()
+                    document.getElementById('random-text-div').innerHTML += '<span class="random-text" style="left:' + x + 'px; top: ' + y + 'px;" >' +  text + '</span>'
+                }
+            }
+        </script>
     </body>
 </html>
